@@ -14,32 +14,33 @@ FROM WorldCup2022.dbo.[2022worldcupsquads] ;
 
 --Lets explore our dataset by looking at some interesting questions: 
 
---Question 1: Which players has scored the most WCGoals before the start of the WorldCup 2022?
+--Question 1: Which players scored the most WCGoals before the start of the WorldCup 2022?
 
 SELECT TOP (5) Player, [WC Goals]
 FROM WorldCup2022.dbo.[2022worldcupsquads]
 ORDER BY [WC Goals] DESC ; 
 
 --Thomas Muller has scored the most WC goals, 10 to be exact. Here we have an additional information that 3/5 of our top players are the current
---captains of the national team.
+--captains of their national team.
 
---Question 2: How many midfileders that Play in  England (also known as Premier League) have at least one goal with their national team?
+--Question 2: How many midfielders that play in England ("Premier League") have scored more than one goal with their National Team? 
 
 SELECT COUNT(*) as NumMidfieldersEnglandScorers
 FROM WorldCup2022.dbo.[2022worldcupsquads]
-WHERE Position = 'Midfielder' AND League = 'England' AND Goals > 0;
+WHERE Position = 'Midfielder' AND League = 'England' AND Goals > 1;
 
--- We do have 40 midfielders that have scored at least one goal. Premier League is arguably the best league in the world that the best players
---compete at. Midfielder is a crucial position on the field that can add goal contribution to a team. We can use different conditions
---within the WHERE clause and answer multiple questions at the same time. 
+--We do have 40 midfielders that have scored at least one goal. Premier League is arguably the best league in the world where the best players compete at, 
+--which makes sense to have a relatively high number. Midfielder is a crucial position on the field that can add goal contribution to a team. 
+--It connects the defense with the offense. If you have players that can We can use different conditions within the WHERE clause
+--and answer multiple questions at the same time.
 
 --Question 3: How many Leagues participated in the tournament? 
 
 SELECT DISTINCT League
 FROM WorldCup2022.dbo.[2022worldcupsquads] ;
 
---We had players from 44 different Leagues, which shows the wide variety of talent from all around the world. The DISTINCT function
---help us identify only different values within our table. 
+--We had players representing 44 different professional Leagues, which shows the wide variety of talent from all around the world and why almost all
+--the professional Leagues stopped playing in order to watch the tournament. The DISTINCT of SQL function helps us to identify only different values within our table.
 
 --Question 4: Which club has the most players in the FIFA World Cup 2022?
 SELECT TOP (5) Club, COUNT(*) AS NumPlayers
@@ -48,7 +49,7 @@ GROUP BY Club
 ORDER BY NumPlayers DESC; 
 
 --Bayern Munich had a total number of 17 players in the world cup, followed by Barcelona and Manchester City with 16.
---A very impressive number!
+--An impressive number!
 
 --Question 5: Which league had the most players?
 
@@ -57,9 +58,10 @@ FROM WorldCup2022.dbo.[2022worldcupsquads]
 GROUP BY League
 ORDER BY TopLeagueCount DESC ; 
 
---Similar to the questionbefore, the League with the most players by a big margin is England. This shows why
---its worth exploring the Premier League in our analysis like we did before. Not suprisingly, the top 5 leagues are all from Europe, 
---where the highest level of football/soccer is played. 
+--Similar to the question before, the League with the most players by a big margin is "England". 
+--This shows why it's worth exploring the Premier League in our analysis as we did before. 
+--Not surprisingly, the top 5 leagues are all from Europe, where the highest level of football/soccer is played.'. 
+
 
 --Question 6: What’s the average age of players within each squad? 
 
